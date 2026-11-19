@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kauã Leandro | Desenvolvedor Web & Estudante de TI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <style>
+    /* PALETA ORIGINAL EVOLUÍDA */
+    :root {
+      --fundo: #24324a;
+      --fundo-escuro: #182234;
+      --cartao: #334361;
+      --cartao-hover: #3b4d6e;
+      --borda: rgba(255, 255, 255, 0.1);
+      --texto: #f8fafc;
+      --texto-secundario: #cbd5e1;
+      --detalhe: #9d94c2;
+      --detalhe-forte: #b6aed8;
+      --destaque-suave: rgba(157, 148, 194, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      background-color: var(--fundo-escuro);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(157, 148, 194, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(51, 70, 102, 0.45) 0%, transparent 50%),
+        linear-gradient(180deg, var(--fundo) 0%, var(--fundo-escuro) 100%);
+      color: var(--texto);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* BARRA DE NAVEGAÇÃO */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(24, 34, 52, 0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .nav-conteudo {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--detalhe-forte);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--texto-secundario);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    /* CONTAINER PRINCIPAL */
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 48px 20px 40px;
+    }
+
+    /* HERO / CABEÇALHO */
+    header {
+      text-align: center;
+      padding: 20px 0 36px;
+    }
+
+    .avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--detalhe) 0%, #5b547d 100%);
+      color: #ffffff;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+      border: 3px solid rgba(182, 174, 216, 0.45);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--destaque-suave);
+      color: #ede9fe;
+      border: 1px solid rgba(182, 174, 216, 0.35);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+    }
+
+    .subtitulo {
+      margin: 0 auto;
+      max-width: 600px;
+      color: var(--texto-secundario);
+      font-size: 17px;
+    }
+
+    /* BOTÕES */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--detalhe);
+      color: #141c2b;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--detalhe-forte);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(157, 148, 194, 0.28);
+    }
+
+    .btn-secundario {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--texto);
+      border: 1px solid var(--borda);
+    }
+
+    .btn-secundario:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: var(--detalhe);
+      box-shadow: none;
+    }
+
+    .btn-pequeno {
+      padding: 7px 13px;
+      font-size: 13px;
+      border-radius: 8px;
+    }
+
+    /* SEÇÕES E GRIDS */
+    section {
+      background-color: var(--cartao);
+      padding: 30px;
+      margin-bottom: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--borda);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    section.visivel {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .secao-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .secao-header svg {
+      color: var(--detalhe-forte);
+      flex-shrink: 0;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--texto-secundario);
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* PILARES SOBRE MIM */
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .pilar-item {
+      background-color: rgba(24, 34, 52, 0.45);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .pilar-item strong {
+      display: block;
+      color: #ffffff;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .pilar-item span {
+      font-size: 13px;
+      color: var(--texto-secundario);
+    }
+
+    /* LINHA DO TEMPO (FORMAÇÃO & EXPERIÊNCIA) */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 22px;
+      border-left: 2px solid var(--detalhe);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--detalhe-forte);
+    }
+
+    .timeline-periodo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--detalhe-forte);
+      text-transform: uppercase;
+    }
+
+    .timeline-item h3 {
+      margin: 2px 0 4px;
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    .timeline-local {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    /* HABILIDADES EM 2 COLUNAS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .skill-box {
+      background-color: rgba(24, 34, 52, 0.4);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .skill-box h3 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--detalhe-forte);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tags span {
+      background-color: rgba(219, 234, 254, 0.1);
+      color: #e0f2fe;
+      border: 1px solid rgba(186, 230, 253, 0.22);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .tags.soft span {
+      background-color: rgba(157, 148, 194, 0.15);
+      color: #ede9fe;
+      border-color: rgba(182, 174, 216, 0.28);
+    }
+
+    /* PROJETOS */
+    .projetos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .projeto-card {
+      background-color: rgba(24, 34, 52, 0.5);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .projeto-card:hover {
+      border-color: var(--detalhe);
+      transform: translateY(-2px);
+    }
+
+    .projeto-card.destaque-principal {
+      grid-column: span 2;
+      background: linear-gradient(145deg, rgba(24, 34, 52, 0.85) 0%, rgba(45, 58, 86, 0.7) 100%);
+      border: 1px solid rgba(182, 174, 216, 0.45);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .projeto-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .projeto-card h3 {
+      margin: 0;
+      font-size: 17px;
+      color: #ffffff;
+    }
+
+    .projeto-card.destaque-principal h3 {
+      font-size: 19px;
+    }
+
+    .projeto-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background-color: var(--destaque-suave);
+      color: var(--detalhe-forte);
+      white-space: nowrap;
+    }
+
+    .projeto-badge.estrela {
+      background-color: rgba(250, 204, 21, 0.16);
+      color: #fde047;
+      border: 1px solid rgba(250, 204, 21, 0.35);
+    }
+
+    .projeto-detalhes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+
+    .projeto-detalhes span {
+      font-size: 12px;
+      color: var(--texto-secundario);
+      background-color: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--borda);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .projeto-rodape {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--borda);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .projeto-techs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .projeto-techs small {
+      font-family: 'JetBrains Mono', monospace;
+      background-color: var(--fundo-escuro);
+      color: var(--texto-secundario);
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 11px;
+    }
+
+    .projeto-acoes {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* MINI CALCULADORA INTERATIVA (DEMO DO PROJETO) */
+    .calc-demo {
+      display: none;
+      margin-top: 18px;
+      background-color: var(--fundo-escuro);
+      border: 1px solid var(--detalhe);
+      border-radius: 12px;
+      padding: 16px;
+      max-width: 280px;
+    }
+
+    .calc-demo.aberta {
+      display: block;
+    }
+
+    .calc-visor {
+      width: 100%;
+      background-color: #0f172a;
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      text-align: right;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--borda);
+      margin-bottom: 10px;
+      overflow-x: auto;
+    }
+
+    .calc-teclas {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .calc-teclas button {
+      background-color: var(--cartao);
+      color: #ffffff;
+      border: 1px solid var(--borda);
+      border-radius: 6px;
+      padding: 10px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .calc-teclas button:hover {
+      background-color: var(--cartao-hover);
+    }
+
+    .calc-teclas button.op {
+      background-color: rgba(157, 148, 194, 0.25);
+      color: var(--detalhe-forte);
+    }
+
+    .calc-teclas button.igual {
+      background-color: var(--detalhe);
+      color: #141c2b;
+      font-weight: 700;
+    }
+
+    /* CONTATO */
+    .contato-acoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    #feedback-contato {
+      margin-top: 14px;
+      font-size: 14px;
+      color: #86efac;
+      font-weight: 500;
+      min-height: 22px;
+    }
+
+    footer {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      h1 { font-size: 28px; }
+      .pilares-grid,
+      .skills-grid,
+      .projetos-grid {
+        grid-template-columns: 1fr;
+      }
+      .projeto-card.destaque-principal {
+        grid-column: span 1;
+      }
+      section { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-conteudo">
+      <a href="#" class="logo">&lt;<span>Kauã</span> /&gt;</a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#trajetoria">Trajetória</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- CABEÇALHO -->
+    <header>
+      <div class="avatar">
+        <img src="perfil.jpeg" alt="Kauã Leandro de Almeida" onerror="this.parentElement.textContent='KL'">
+      </div>
+      <div>
+        <span class="status-pill">
+          <span class="status-dot"></span>
+          Aberto a oportunidades de estágio e jovem aprendiz em TI
+        </span>
+      </div>
+      <h1>Kauã Leandro de Almeida</h1>
+      <p class="subtitulo">
+        Estudante de Técnico em Informática para Internet no SENAI • Desenvolvendo soluções web com lógica, dedicação e foco em resultados.
+      </p>
+    </header>
+
+    <!-- SOBRE MIM -->
+    <section id="sobre">
+      <div class="secao-header">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <h2>Sobre mim</h2>
+      </div>
+      <p>
+        Sou estudante do curso <strong>Técnico em Informática para Internet</strong>, movido pela curiosidade de entender como jogos, sites e sistemas funcionam por trás da tela. Apaixonado por tecnologia e futebol, aplico no código a mesma disciplina e espírito de equipe que trago do esporte.
+      </p>
+      <p>
+        Além da formação técnica, possuo vivência prática em <strong>vendas e atendimento</strong>, diferencial que me permite unir raciocínio lógico à boa comunicação para entender as necessidades reais das pessoas e entregar soluções úteis.
+      </p>
+
+      <div class="pilares-grid">
+        <div class="pilar-item">
+          <strong>Base Técnica</strong>
+          <span>Construção de páginas web e lógica estruturada no SENAI.</span>
+        </div>
+        <div class="pilar-item">
+          <strong>Visão Comercial</strong>
+          <span>Experiência em vendas, escuta ativa e foco no usuário.</span>
+        </div>
+        <div class="pilar-item">
+          <strong>Evolução Constante</strong>
+          <span>Prática diária com projetos reais e versionamento no GitHub.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAJETÓRIA -->
+    <section id="trajetoria">
+      <div class="secao-header">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        <h2>Formação & Experiência</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-periodo">2026 • Em andamento</span>
+          <h3>Técnico em Informática para Internet</h3>
+          <span class="timeline-local">SENAI</span>
+          <p>Desenvolvimento front-end (HTML), lógica de programação, algoritmos e boas práticas para aplicações web.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-periodo">Vivência Profissional</span>
+          <h3>Atuação Comercial e Vendas</h3>
+          <span class="timeline-local">Atendimento ao Público & Negociação</span>
+          <p>Desenvolvimento de comunicação clara, resiliência, trabalho sob metas e facilidade para colaborar em equipe.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section id="habilidades">
+      <div class="secao-header">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <h2>Habilidades</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3>Tecnologias & Lógica</h3>
+          <div class="tags">
+            <span>HTML5</span>
+            <span>Portugol</span>
+            <span>Lógica de Programação</span>
+            <span>Git & GitHub</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>Competências Comportamentais</h3>
+          <div class="tags soft">
+            <span>Experiência em Vendas</span>
+            <span>Comunicação Assertiva</span>
+            <span>Trabalho em Equipe</span>
+            <span>Resolução de Problemas</span>
+            <span>Aprendizado Rápido</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+      <div class="secao-header">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <h2>Projetos em Destaque</h2>
+      </div>
+
+      <div class="projetos-grid">
+        <!-- PROJETO DESTAQUE PRINCIPAL: APENAS UM DUELO -->
+        <article class="projeto-card destaque-principal">
+          <div>
+            <div class="projeto-topo">
+              <h3>Apenas um Duelo: Batalha no Parque RPG</h3>
+              <span class="projeto-badge estrela">★ Destaque Principal</span>
+            </div>
+            <p>
+              Jogo de luta RPG em turnos inspirado na série <strong>Apenas um Show (Regular Show)</strong>. Conta com sistema estratégico de vantagem elemental (Caos, Cósmico e Força), mini-game de timing (QTE) para golpes críticos, efeitos sonoros sintetizados via Web Audio API e partículas em Canvas.
+            </p>
+            <div class="projeto-detalhes">
+              <span>📖 Modo História (6 Capítulos)</span>
+              <span>🕹️ 1 Jogador (vs IA) & 2 Jogadores (PvP Local)</span>
+              <span>👾 8 Personagens & 4 Cenários</span>
+            </div>
+          </div>
+
+          <div class="projeto-rodape">
+            <div class="projeto-techs">
+              <small>HTML5</small>
+              <small>Tailwind CSS</small>
+              <small>Canvas & Web Audio</small>
+              <small>Lógica RPG</small>
+            </div>
+            <div class="projeto-acoes">
+              <a href="index.html" target="_blank" rel="noopener noreferrer" class="btn btn-pequeno">Jogar Agora 🎮</a>
+              <a href="https://github.com/kaualeandr0" target="_blank" rel="noopener noreferrer" class="btn btn-secundario btn-pequeno">Ver no GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJETO 2 -->
+        <article class="projeto-card">
+          <div>
+            <div class="projeto-topo">
+              <h3>Calculadora Lógica</h3>
+              <span class="projeto-badge">Interativo</span>
+            </div>
+            <p>
+              Criada originalmente em <strong>Portugol</strong> para dominar estruturas condicionais e operações matemáticas, com versão funcional integrada nesta página.
+            </p>
+
+            <!-- MINI CALCULADORA INTERATIVA -->
+            <div id="calc-demo" class="calc-demo">
+              <div id="calc-visor" class="calc-visor">0</div>
+              <div class="calc-teclas">
+                <button type="button" class="op" onclick="limparCalc()">C</button>
+                <button type="button" class="op" onclick="apagarUltimo()">⌫</button>
+                <button type="button" class="op" onclick="definirOp('/')">÷</button>
+                <button type="button" class="op" onclick="definirOp('*')">×</button>
+
+                <button type="button" onclick="digitarNum('7')">7</button>
+                <button type="button" onclick="digitarNum('8')">8</button>
+                <button type="button" onclick="digitarNum('9')">9</button>
+                <button type="button" class="op" onclick="definirOp('-')">-</button>
+
+                <button type="button" onclick="digitarNum('4')">4</button>
+                <button type="button" onclick="digitarNum('5')">5</button>
+                <button type="button" onclick="digitarNum('6')">6</button>
+                <button type="button" class="op" onclick="definirOp('+')">+</button>
+
+                <button type="button" onclick="digitarNum('1')">1</button>
+                <button type="button" onclick="digitarNum('2')">2</button>
+                <button type="button" onclick="digitarNum('3')">3</button>
+                <button type="button" class="igual" onclick="calcular()">=</button>
+
+                <button type="button" style="grid-column: span 2;" onclick="digitarNum('0')">0</button>
+                <button type="button" onclick="digitarNum('.')">.</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="projeto-rodape">
+            <div class="projeto-techs">
+              <small>Portugol</small>
+              <small>Lógica</small>
+            </div>
+            <button type="button" class="btn btn-pequeno" onclick="alternarCalc()">Testar versão Web</button>
+          </div>
+        </article>
+
+        <!-- PROJETO 3 -->
+        <article class="projeto-card">
+          <div>
+            <div class="projeto-topo">
+              <h3>Portfólio Profissional</h3>
+              <span class="projeto-badge">Web</span>
+            </div>
+            <p>
+              Interface responsiva desenvolvida do zero para apresentar minha evolução como desenvolvedor, com tema personalizado, grid adaptável e projetos interativos.
+            </p>
+          </div>
+
+          <div class="projeto-rodape">
+            <div class="projeto-techs">
+              <small>HTML5</small>
+              <small>Design Responsivo</small>
+            </div>
+            <a href="https://github.com/kaualeandr0" target="_blank" rel="noopener noreferrer" class="btn btn-secundario btn-pequeno">Ver código</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="secao-header">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <h2>Vamos conversar?</h2>
+      </div>
+      <p>
+        Estou em busca da minha primeira oportunidade na área de tecnologia para aprender, contribuir com o time e crescer profissionalmente.
+      </p>
+      <div class="contato-acoes">
+        <button type="button" class="btn" onclick="mostrarMensagem()">Deixar um olá 👋</button>
+        <!-- TROQUE PELO SEU E-MAIL REAL ABAIXO -->
+        <button type="button" class="btn btn-secundario" onclick="copiarEmail('kaualeandro.contato@email.com')">Copiar e-mail</button>
+      </div>
+      <p id="feedback-contato" aria-live="polite"></p>
+    </section>
+
+    <footer>
+      <p>Desenvolvido por Kauã Leandro de Almeida • 2026</p>
+    </footer>
+  </main>
+
+  <script>
+    // Animação suave ao rolar a página
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("visivel");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll("section").forEach((secao) => observador.observe(secao));
+
+    // Mensagem interativa original aprimorada
+    function mostrarMensagem() {
+      const feedback = document.getElementById("feedback-contato");
+      feedback.textContent = "Obrigado pela visita! Será um prazer conectar com você no LinkedIn ou conversar sobre tecnologia.";
+    }
+
+    // Copiar e-mail para a área de transferência
+    function copiarEmail(email) {
+      const feedback = document.getElementById("feedback-contato");
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(email).then(() => {
+          feedback.textContent = `E-mail copiado: ${email}`;
+        });
+      } else {
+        feedback.textContent = `E-mail para contato: ${email}`;
+      }
+    }
+
+    // Lógica da Calculadora Interativa
+    let valorAtual = "0";
+    let valorAnterior = null;
+    let operacaoAtual = null;
+    let reiniciarTela = false;
+
+    function atualizarVisor() {
+      document.getElementById("calc-visor").textContent = valorAtual;
+    }
+
+    function alternarCalc() {
+      const box = document.getElementById("calc-demo");
+      box.classList.toggle("aberta");
+    }
+
+    function digitarNum(num) {
+      if (reiniciarTela) {
+        valorAtual = num === "." ? "0." : num;
+        reiniciarTela = false;
+      } else {
+        if (num === "." && valorAtual.includes(".")) return;
+        valorAtual = valorAtual === "0" && num !== "." ? num : valorAtual + num;
+      }
+      atualizarVisor();
+    }
+
+    function definirOp(op) {
+      if (operacaoAtual !== null && !reiniciarTela) calcular();
+      valorAnterior = parseFloat(valorAtual);
+      operacaoAtual = op;
+      reiniciarTela = true;
+    }
+
+    function calcular() {
+      if (operacaoAtual === null || valorAnterior === null) return;
+      const atual = parseFloat(valorAtual);
+      let resultado = 0;
+
+      if (operacaoAtual === "+") resultado = valorAnterior + atual;
+      if (operacaoAtual === "-") resultado = valorAnterior - atual;
+      if (operacaoAtual === "*") resultado = valorAnterior * atual;
+      if (operacaoAtual === "/") {
+        if (atual === 0) {
+          valorAtual = "Erro (div/0)";
+          operacaoAtual = null;
+          reiniciarTela = true;
+          atualizarVisor();
+          return;
+        }
+        resultado = valorAnterior / atual;
+      }
+
+      valorAtual = String(Number(resultado.toFixed(6)));
+      operacaoAtual = null;
+      valorAnterior = null;
+      reiniciarTela = true;
+      atualizarVisor();
+    }
+
+    function limparCalc() {
+      valorAtual = "0";
+      valorAnterior = null;
+      operacaoAtual = null;
+      reiniciarTela = false;
+      atualizarVisor();
+    }
+
+    function apagarUltimo() {
+      if (reiniciarTela) return;
+      valorAtual = valorAtual.length > 1 ? valorAtual.slice(0, -1) : "0";
+      atualizarVisor();
+    }
+  </script>
+</body>
+</html>
